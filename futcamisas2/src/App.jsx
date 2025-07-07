@@ -5,23 +5,24 @@ import Register from './pages/Register';
 import Profile from './pages/Profile';
 import ProductList from './pages/ProductList';
 import ProductDetail from './pages/ProductDetail';
+import Cart from './pages/Cart'; // Importa a nova página do carrinho
 import Header from './components/Header';
 import AdminRoute from './components/AdminRoute';
 import PrivateRoute from './components/PrivateRoute';
-import { ProductProvider } from './contexts/ProductContext';
-// Contextos e páginas serão importados conforme implementados
+// Os contextos agora são fornecidos no arquivo main.jsx
 
 function App() {
   return (
-    <ProductProvider>
-      <div className="min-h-screen bg-gray-50">
-        <Header />
+    // O Provider do Produto foi movido para main.jsx para melhor organização
+    <div className="min-h-screen bg-gray-50">
+      <Header />
+      <main className="pt-4 pb-8">
         <Routes>
           {/* Rotas principais */}
-          <Route path="/" element={<div>Home</div>} />
+          <Route path="/" element={<ProductList />} /> {/* Alterado para mostrar a lista de produtos na home */}
           <Route path="/produtos" element={<ProductList />} />
           <Route path="/produto/:id" element={<ProductDetail />} />
-          <Route path="/carrinho" element={<div>Carrinho</div>} />
+          <Route path="/carrinho" element={<Cart />} /> {/* Adiciona a rota do carrinho */}
           <Route path="/checkout" element={
             <PrivateRoute>
               <div>Checkout</div>
@@ -41,10 +42,10 @@ function App() {
           } />
           {/* Outras rotas */}
         </Routes>
-        {/* Footer */}
-      </div>
-    </ProductProvider>
+      </main>
+      {/* Aqui pode ir um Footer futuramente */}
+    </div>
   );
 }
 
-export default App; 
+export default App;

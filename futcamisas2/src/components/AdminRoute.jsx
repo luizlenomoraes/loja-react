@@ -4,9 +4,16 @@ import { useAuth } from '../contexts/AuthContext';
 
 export default function AdminRoute({ children }) {
   const { user, loading } = useAuth();
-  if (loading) return <div className="text-center py-8">Carregando...</div>;
-  if (!user) return <Navigate to="/login" replace />;
-  // Exemplo: admin é o email admin@futcamisas.com
-  if (user.email !== 'admin@futcamisas.com') return <Navigate to="/" replace />;
+
+  if (loading) {
+    return <div className="text-center py-8">Carregando...</div>;
+  }
+
+  // Redireciona se não houver usuário ou se a função não for 'admin'
+  // Note que seu script SQL usa 'user', então o admin deve ter 'admin'
+  if (!user || user.role !== 'admin') {
+    return <Navigate to="/" replace />;
+  }
+
   return children;
-} 
+}

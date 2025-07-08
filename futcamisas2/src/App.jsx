@@ -6,9 +6,10 @@ import Profile from './pages/Profile';
 import ProductList from './pages/ProductList';
 import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
-import Checkout from './pages/Checkout'; // Importa a página de Checkout
-import PaymentSuccess from './pages/PaymentSuccess'; // Importa a página de sucesso
-import PaymentFailure from './pages/PaymentFailure'; // Importa a página de falha
+import Checkout from './pages/Checkout';
+import PaymentSuccess from './pages/PaymentSuccess';
+import PaymentFailure from './pages/PaymentFailure';
+import AdminDashboard from './pages/AdminDashboard'; // Importa a página do painel
 import Header from './components/Header';
 import AdminRoute from './components/AdminRoute';
 import PrivateRoute from './components/PrivateRoute';
@@ -36,9 +37,10 @@ function App() {
               <Profile />
             </PrivateRoute>
           } />
+          {/* Rota do Admin atualizada */}
           <Route path="/admin" element={
             <AdminRoute>
-              <div>Painel Admin</div>
+              <AdminDashboard />
             </AdminRoute>
           } />
 
